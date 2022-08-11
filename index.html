@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 10px;
+            padding: 0;
+            font-family: Helvetica;
+        }
+
+        canvas {
+            width: 300px;
+            height: 300px;
+            display: block;
+            border: 1px solid black;
+        }
+
+        div {
+            text-align: center;
+        }
+
+        input {
+            height: 40px;
+            width: 200px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>
+            f(x) = <input type="text" id="expression">
+            <button onclick="draw()">Draw</button>
+        </h1>
+
+        <p>*Use js syntax</p>
+    </div>
+
+    <br>
+    <br>
+    <center>
+        <canvas id="canvas"></canvas>
+    </center>
+
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var width = canvas.width = window.innerWidth
+        var height = canvas.height = window.innerHeight
+
+        ctx.translate(0, height / 2)
+        ctx.scale(1, -1)
+
+        // ctx.beginPath();
+        // ctx.moveTo(0, 300)
+        // ctx.lineTo(300, 300)
+        // ctx.stroke();
+
+
+        function draw() {
+
+            for (var x = -100; x < 100; x += 0.001) {
+                var xx = x * 200 + width / 2,
+                    y = 200 * eval(document.getElementById("expression").value)
+
+                ctx.fillRect(xx, y, 5, 5)
+
+            }
+        }
+    </script>
+</body>
+
+</html>
